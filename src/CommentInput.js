@@ -57,10 +57,10 @@ class CInput extends React.Component {
     return (
       <div style={{ textAlign: 'center' }} className="comment-input" id='inputBox'>
         <span style={SpanStyle}>Title:<br /></span>
-        <input type="text" name="title" maxlength="10" style={{ width: '20%' }}></input>
+        <input type="text" name="title" maxLength="10" style={{ width: '20%' }}></input>
         <div>
           <span style={SpanStyle}>Content:<br /></span>
-          <textarea cols="50" rows="5" name="content">Please input Content.</textarea>
+          <textarea cols="50" rows="5" name="content" >Please input Content.</textarea>
         </div>
 
         {$imageText}
