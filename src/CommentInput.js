@@ -1,9 +1,6 @@
 import React from 'react';
 import './index.css';
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 
@@ -51,7 +48,7 @@ class CInput extends React.Component {
 
     if (imagePreviewUrl) {
       $imageText = <span style={SpanStyle}>Image Preview:<br /></span>;
-      $imagePreview = (<img src={imagePreviewUrl} />);
+      $imagePreview = (<img alt='123' src={imagePreviewUrl} />);
     }
 
 
