@@ -29,11 +29,13 @@ class App extends React.Component {
     return (
 
       <div align="center" id='add'>
+        app123
         <Link to='/new-post'>
           <button type="button" style={BtnStyle}>Add Post</button>
         </Link>
         <button type="button" style={BtnStyle} >Remove Post</button>
         <br />
+        app456
       </div>
 
     )
