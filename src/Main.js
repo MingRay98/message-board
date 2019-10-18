@@ -18,7 +18,7 @@ class Main extends React.Component {
       <Router>
         <div align='center'>Main1</div>
         <Switch>
-          <Route exact path='/'> <App /> </Route>
+          <Route exact path='/message-board/'> <App /> </Route>
           <Route path='/new-post'> <CInput /> </Route>
         </Switch>
         <div align='center'>Main2</div>
