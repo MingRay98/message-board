@@ -1,5 +1,5 @@
 import CInput from './CommentInput';
-import App from './App.js'
+import App from './App'
 import React from 'react';
 import './index.css';
 import {
