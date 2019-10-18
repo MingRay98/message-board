@@ -12,9 +12,10 @@ class Main extends React.Component {
   render() {
     return (
       <Router>
+        <div></div>
         <Switch>
-          <Route exact path='/'> <App /> </Route>
-          <Route path='/new-post'> <CInput /> </Route>
+          <Route exact path='https://mingray98.github.io/message-board/'> <App /> </Route>
+          <Route path='https://mingray98.github.io/message-board/new-post'> <CInput /> </Route>
         </Switch>
       </Router>
 
