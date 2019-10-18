@@ -9,18 +9,7 @@ import {
 } from "react-router-dom";
 
 
-class test extends React.Component {
-  render() {
-    return (
 
-      <p>這裡是首頁</p>
-
-
-    )
-  }
-
-
-}
 
 
 class Main extends React.Component {
