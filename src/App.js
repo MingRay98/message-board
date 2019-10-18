@@ -30,7 +30,7 @@ class App extends React.Component {
 
       <div align="center" id='add'>
         app1<br/>
-        <Link to='/new-post'>
+        <Link to='/messgae-board/new-post'>
           <button type="button" style={BtnStyle}>Add Post</button>
         </Link>
         <button type="button" style={BtnStyle} >Remove Post</button>
