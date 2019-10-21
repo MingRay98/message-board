@@ -6,76 +6,83 @@ import {
 
 class CInput extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.handleImageChange = this.handleImageChange.bind(this);
+    this.openFileUpload = this.openFileUpload.bind(this);
+    this.showState = this.showState.bind(this);
 
-
-  state = {
-    file: '',
-    imagePreviewUrl: ''
-  };
-
-  _handleImageChange = e => {
-    e.preventDefault();
-
-    let reader = new FileReader();
-    let file = e.target.files[0];
-    reader.onloadend = () => {
-      this.setState({ file: file, imagePreviewUrl: reader.result });
+    this.state = {
+      name: '',
+      content: '',
+      imagePreviewUrl: ''
     }
-    reader.readAsDataURL(file)
 
   }
+
+  handleSubmit = () => {
+    const postData = {name: this.state.name, content: this.state.content, imagePreviewUrl: this.state.imagePreviewUrl};
+    this.props.addComponent(postData);
+  };
+
+
+
+  handleImageChange(event) {
+    this.setState({
+      imagePreviewUrl: URL.createObjectURL(event.target.files[0])
+    })
+  }
+
 
   openFileUpload() {
     document.getElementById("fileUpload").click();
   }
 
+  showState() {
+    this.setState({
+      name: this.state.name,
+      content: this.state.content
+    })
 
+  }
 
   render() {
 
-    const SpanStyle = {
-      padding: "10px 0px",
-      display: "grid",
-      content: 'center',
-      justifyContent: 'center',
-      alignItems: 'center'
+    let imageText = null;
+    let imagePreviewUrl = null;
+
+    if (this.state.imagePreviewUrl) {
+      imageText = <span >Image Preview:<br /></span>;
+      imagePreviewUrl = <img alt="" src={this.state.imagePreviewUrl} />;
     }
-
-
-    let { imagePreviewUrl } = this.state;
-    let $imagePreview = null;
-    let $imageText = null;
-
-    if (imagePreviewUrl) {
-      $imageText = <span style={SpanStyle}>Image Preview:<br /></span>;
-      $imagePreview = (<img alt='123' src={imagePreviewUrl} />);
-    }
-
-
 
 
     return (
-      <div style={{ textAlign: 'center' }} className="comment-input" id='inputBox'>
-        <span style={SpanStyle}>Title:<br /></span>
-        <input type="text" name="title" maxLength="10" style={{ width: '20%' }}></input>
-        <div>
-          <span style={SpanStyle}>Content:<br /></span>
-          <textarea cols="50" rows="5" name="content" >Please input Content.</textarea>
-        </div>
+      <div >
 
-        {$imageText}
-        {$imagePreview}
+        <span >Title:<br /></span>
+        <input type="text" name="title" maxLength="10" style={{ width: '20%' }} ref={(input) => { this.state.name = input; }}></input><br />
+
+        <span >Content:<br /></span>
+        <textarea cols="50" rows="5" name="content" ref={(input) => { this.state.content = input; }}>Please input Content.</textarea>
+
+        <input type="file" id='fileUpload' accept="image/*" onChange={(e) => this.handleImageChange(e)} style={{ display: 'none' }}></input>
+
+        {imageText}
+        {imagePreviewUrl}
         <br />
         <br />
 
-        <input type="file" id='fileUpload' accept="image/*" onChange={this._handleImageChange} style={{ display: 'none' }}></input>
         <button type="file" style={{ width: '100px' }} onClick={this.openFileUpload}>upload</button>
-        <Link to='/'>
-          <button type="button" style={{ width: '100px' }} onClick={this.showRootAndHiddenInputBox}>submit</button>
+
+
+        <Link to='/message-board' >
+        <button type="button" style={{ width: '100px' }} onClick={this.handleSubmit}>submit</button>
         </Link>
-
-
-
+        {/* <br />
+        {this.state.name.value}
+        <br />
+        {this.state.content.value} */}
       </div>
     )
   }

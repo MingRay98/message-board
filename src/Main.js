@@ -8,26 +8,43 @@ import {
   Route,
 } from "react-router-dom";
 
-
-
-
-
 class Main extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      comment: []
+    };
+  }
+
+  addComponent = (post) => {
+    const comment = this.state.comment;
+    comment.push(post);
+    this.setState({ component: comment });
+  };
+
+  removeComment =()=>{
+    const comment = this.state.comment;
+    comment.pop();
+    this.setState({ component: comment });
+  }
+
   render() {
+
+    // console.log(this.state);
+    // console.log(this.props);
+
+
     return (
       <Router>
-        <div align='center'>Main1</div>
         <Switch>
-          <Route exact path='/message-board/'> <App /> </Route>
-          <Route path='/new-post'> <CInput /> </Route>
+          <Route exact path='/message-board'> <App  comment={this.state.comment} removeComment ={this.removeComment} /> </Route>
+          <Route path='/new-post'> <CInput addComponent={this.addComponent} /> </Route>
         </Switch>
-        <div align='center'>Main2</div>
       </Router>
 
     )
   }
-
-
 }
 
 export default Main;

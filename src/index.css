@@ -11,6 +11,7 @@ code {
 
 div {
   display: block;
+  text-align: center;
 }
 
 button {
@@ -24,4 +25,17 @@ img {
   width: 100px;
   height: 100px;
   object-fit: contain;
+}
+
+span {
+  padding: 10px 0px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.Comment{
+  width: 50%; 
+  margin: 10px auto; 
+  border-style: dashed;
 }
