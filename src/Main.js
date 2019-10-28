@@ -1,7 +1,6 @@
-import CInput from './CommentInput';
+import CInput from './Component/CommentInput';
 import App from './App'
 import React from 'react';
-import './index.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -13,36 +12,31 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      comment: []
+      comments: [] //留言陣列
     };
   }
 
-  addComponent = (post) => {
-    const comment = this.state.comment;
-    comment.push(post);
-    this.setState({ component: comment });
+  addPost = (post) => { //增加留言
+    const comments = this.state.comments;
+    comments.push(post);
+    this.setState({ comments: comments });
   };
 
-  removeComment =()=>{
-    const comment = this.state.comment;
-    comment.pop();
-    this.setState({ component: comment });
+  removePost = () => { //移除留言
+    const comments = this.state.comments;
+    comments.pop();
+    this.setState({ comments: comments });
   }
 
   render() {
-
-    // console.log(this.state);
-    // console.log(this.props);
-
-
+      //Router包住 才能用裡面的功能 兩種不同 Route 渲染頁面及傳參數的方式
     return (
       <Router>
-        <Switch>
-          <Route exact path='/message-board'> <App  comment={this.state.comment} removeComment ={this.removeComment} /> </Route>
-          <Route path='/new-post'> <CInput addComponent={this.addComponent} /> </Route>
+        <Switch> 
+          <Route exact path='/message-board'> <App comments={this.state.comments} removePost={this.removePost} /> </Route>
+          <Route path='/message-board/new-post' render={(props) => <CInput {...props} addPost={this.addPost} />} />
         </Switch>
       </Router>
-
     )
   }
 }

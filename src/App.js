@@ -1,9 +1,10 @@
 
-import CList from './CommentList'
+import CDisplay from './Component/CommentDisplay'
 import React from 'react';
 import './index.css';
+import './Component/button.css'
 import {
-  Link,
+  Link
 } from 'react-router-dom';
 
 
@@ -13,33 +14,14 @@ class App extends React.Component {
     super(props)
   }
 
-
-
   render() {
-
-    console.log(this.props);
-
     return (
-
       <div align="center">
-        <Link to='/new-post'><button type="button" >Add Post</button></Link>
-        <button type="button" onClick={this.props.removeComment} >Remove Post</button>
-        {this.props.comment.map((item) =>
-          <div style={{ width: '50%', margin: '10px auto', borderStyle: 'dashed' }}>
-            <div>
-              {item.name.value}
-            </div>
-            <div>
-              {item.content.value}
-            </div>
-            {item.imagePreviewUrl &&
-              <img src={item.imagePreviewUrl} alt={"preview"} style={{ width: '100px', height: '100px', objectFit: 'contain' }} />}
-          </div>
-        )}
-
+        <Link to='/message-board/new-post'><button className="changeColorButton" >Add Post</button></Link>
+        <button  onClick={this.props.removePost} className="changeColorButton" >Remove Post</button>
+        <CDisplay comments={this.props.comments} />
       </div>
     )
-
   }
 }
 
