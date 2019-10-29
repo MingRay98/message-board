@@ -13,10 +13,10 @@ class CommentDisplay extends Component {
          {this.props.comments.map((item) =>
           <div className='Comment'>
             <div>
-              {item.name.value}
+              {item.name}
             </div>
             <div>
-              {item.content.value}
+              {item.content}
             </div>
             {item.imagePreviewUrl &&
               <img src={item.imagePreviewUrl} alt={"preview"}  />}

@@ -11,17 +11,16 @@ class CInput extends React.Component {
     super(props)
     this.handleImageChange = this.handleImageChange.bind(this); //沒用箭頭函數要用bind綁定
     this.openFileUpload = this.openFileUpload.bind(this); 
-
     this.state = {
-      name: '',
-      content: '',
       imagePreviewUrl: ''
     }
-
   }
 
   handleSubmit = () => { //用了就不用綁，先把所要傳的資料包成array再push上去
-    const postData = {name: this.state.name, content: this.state.content, imagePreviewUrl: this.state.imagePreviewUrl};
+    const postData = {
+      name: this.title.value, 
+      content: this.content.value, 
+      imagePreviewUrl: this.state.imagePreviewUrl};
     this.props.addPost(postData);
   };
 
@@ -34,7 +33,6 @@ class CInput extends React.Component {
   openFileUpload() { //打開上傳功能
     document.getElementById("fileUpload").click();
   }
-
 
   render() {
 
@@ -49,15 +47,15 @@ class CInput extends React.Component {
     return (
       <div >
         <span >Title:<br /></span>
-        <input type="text" name="title" maxLength="10" style={{ width: '20%' }} ref={(input) => { this.state.name = input; }}></input><br />
+        <input type="text" name="title" maxLength="10" style={{ width: '20%' }} ref={(input) => { this.title = input;}}></input><br />
         <span >Content:<br /></span>
-        <textarea cols="50" rows="5" name="content" ref={(input) => { this.state.content = input; }}>Please input Content.</textarea> 
+        <textarea cols="50" rows="5" name="content" defaultValue="Please input Content." ref={(input) => { this.content = input; }}  />
         <input type="file" id='fileUpload' accept="image/*" onChange={(e) => this.handleImageChange(e)} style={{ display: 'none' }}></input>
 
         {imageText}
         {imagePreviewUrl}<br /><br />
 
-        <button type="file" className='uploadButton' onClick={this.openFileUpload}>upload</button>
+        <button className='uploadButton' onClick={this.openFileUpload}>upload</button>
         <Link to='/message-board' >
         <button type="button" className="changeColorButton" onClick={this.handleSubmit}>submit</button>
         </Link>
